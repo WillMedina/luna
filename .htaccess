@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /app/
+#RewriteBase /beta/
+RewriteRule ^/$ index.php [L]
+
+#LINKS DE SEGUNDO NIVEL PARA ACCIONES
+RewriteRule ^/?([a-zA-Z_0-9]+)/([a-zA-Z_0-9]+)$ index.php?controller=$1&action=$2
+RewriteRule ^/?([a-zA-Z_0-9]+)/([a-zA-Z_0-9]+)/$ index.php?controller=$1&action=$2
+
+#LINKS DE PRIMER NIVEL PARA CONTROLADORES
+RewriteRule ^/?([a-zA-Z_0-9]+)$ index.php?controller=$1
+RewriteRule ^/?([a-zA-Z_0-9]+)/$ index.php?controller=$1
