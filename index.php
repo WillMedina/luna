@@ -20,20 +20,20 @@ $archivo = '';
 $nombre = '';
 $funcion = '';
 
-$get_controller = filter_input(INPUT_GET, 'controller', FILTER_SANITIZE_STRING);
-$get_action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+$get_controller = filter_input(INPUT_GET, 'controller', FILTER_SANITIZE_STRING) ?? 'main';
+$get_action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING) ?? 'run';
 
 //candado para verificar si sale por json o no
 if (model\data::$_JSON) {
     header('Content-type:application/json;charset=utf-8');
 }
 
-if (!is_null($get_controller) and strlen($get_controller) > 0) {
+if (strlen($get_controller) > 0) {
     $archivo = 'controller/' . helpers\utils::input_sanitize($get_controller) . '.controller.php';
     $model = 'model/' . helpers\utils::input_sanitize($get_controller) . '.model.php';
     $nombre = __NAMESPACE__ . '\\controller\\' . helpers\utils::input_sanitize($get_controller);
 
-    if (!is_null($get_action) and strlen($get_action) > 0) {
+    if (strlen($get_action) > 0) {
         $funcion = helpers\utils::input_sanitize($get_action);
     } else {
         $funcion = 'run';
