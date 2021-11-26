@@ -1,12 +1,12 @@
 <?php
 
+namespace luna;
+
 use luna\{
     model,
     controller,
     helpers
 };
-
-namespace luna;
 
 session_start();
 
