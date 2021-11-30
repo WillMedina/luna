@@ -29,12 +29,12 @@ if (model\data::$_JSON) {
 }
 
 if (strlen($get_controller) > 0) {
-    $archivo = 'controller/' . helpers\utils::input_sanitize($get_controller) . '.controller.php';
-    $model = 'model/' . helpers\utils::input_sanitize($get_controller) . '.model.php';
-    $nombre = __NAMESPACE__ . '\\controller\\' . helpers\utils::input_sanitize($get_controller);
+    $archivo = 'controller/' . \luna\helpers\utils::input_sanitize($get_controller) . '.controller.php';
+    $model = 'model/' . \luna\helpers\utils::input_sanitize($get_controller) . '.model.php';
+    $nombre = __NAMESPACE__ . '\\controller\\' . \luna\helpers\utils::input_sanitize($get_controller);
 
     if (strlen($get_action) > 0) {
-        $funcion = helpers\utils::input_sanitize($get_action);
+        $funcion = \luna\helpers\utils::input_sanitize($get_action);
     } else {
         $funcion = 'run';
     }
@@ -53,11 +53,11 @@ try {
         $controller = new $nombre();
         $controller->$funcion();
     } else {
-        helpers\debugger::reportar('No existe el m&eacute;todo ' . $function, 'index.php');
-        helpers\debugger::volcar(true);
+        \luna\helpers\debugger::reportar('No existe el m&eacute;todo ' . $funcion, 'index.php');
+        \luna\helpers\debugger::volcar(true);
     }
 } catch (\Throable $e) {
     //echo $e->getMessage();
-    helpers\debugger::reportar('Error interno desconocido', 'index.php', $e->getTraceAsString(), $e);
-    helpers\debugger::volcar(true);
+    \luna\helpers\debugger::reportar('Error interno desconocido', 'index.php', $e->getTraceAsString(), $e);
+    \luna\helpers\debugger::volcar(true);
 }
